@@ -1,3 +1,6 @@
+This exercise was actually very interesting, and I found the video aides to be equally engaging. I think particles are a really cool way to add personality and texture, and screen shake can be very effective if used wisely. 
+
+
 # E06a-Particles-and-Screen-Shake
 
 As with other exercises, Fork and Clone this repository.
