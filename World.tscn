@@ -1,20 +1,113 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/World.gd" type="Script" id=2]
+[ext_resource path="res://Assets/rigzsoft/Smoke/Cloud3.png" type="Texture" id=3]
+[ext_resource path="res://Assets/rigzsoft/Flames/FireBall3.png" type="Texture" id=4]
+[ext_resource path="res://Assets/kenney.nl/magic_03.png" type="Texture" id=5]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.377778, 1 )
+colors = PoolColorArray( 0.627451, 0.419608, 0.960784, 1, 0.75634, 0.604793, 0.765229, 1, 0.968627, 0.909804, 0.443137, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+lifetime_randomness = 1.0
+emission_shape = 2
+emission_box_extents = Vector3( 5, 20, 1 )
+flag_disable_z = true
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+angular_velocity = 50.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 23.8
+angle_random = 1.0
+scale = 0.1
+color_ramp = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 2
+emission_box_extents = Vector3( 100, 5, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 200.0
+angular_velocity = 165.52
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = -57.9
+scale = 5.0
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.514815, 1 )
+colors = PoolColorArray( 0.904151, 0.910156, 0.141456, 1, 0.886719, 0.604406, 0.117866, 1, 1, 0, 0, 0.337255 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.468052 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+emission_shape = 2
+emission_box_extents = Vector3( 30, 20, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 25.0
+angular_velocity = 1.18
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 90.0
+scale = 0.2
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 6 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="Particles1" type="Particles2D" parent="."]
+[node name="magic spell" type="Particles2D" parent="."]
 position = Vector2( 128, 256 )
+rotation = -1.55334
+amount = 100
+lifetime = 5.0
+process_material = SubResource( 3 )
+texture = ExtResource( 5 )
 
-[node name="Particles2" type="Particles2D" parent="."]
+[node name="snow" type="Particles2D" parent="."]
 position = Vector2( 512, 256 )
+rotation = 1.52193
+amount = 21
+lifetime = 5.0
+process_material = SubResource( 4 )
 
-[node name="Particles3" type="Particles2D" parent="."]
+[node name="Cloud3" type="Sprite" parent="snow"]
+position = Vector2( -89.4578, 68.7852 )
+texture = ExtResource( 3 )
+
+[node name="Cloud4" type="Sprite" parent="snow"]
+position = Vector2( -84.976, -58.59 )
+texture = ExtResource( 3 )
+
+[node name="Cloud5" type="Sprite" parent="snow"]
+position = Vector2( 23.5501, 30.5546 )
+scale = Vector2( 0.774117, 0.778909 )
+texture = ExtResource( 3 )
+
+[node name="Fire" type="Particles2D" parent="."]
 position = Vector2( 896, 256 )
+rotation = -3.10843
+amount = 100
+lifetime = 3.0
+process_material = SubResource( 9 )
+texture = ExtResource( 4 )
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2( 512, 304 )
+current = true
 script = ExtResource( 1 )
